@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta
 
 
-def analyze(device, client, highly_suspected_uei, low_suspected_uei, TIME_GUARD, MIMIMUM_BATTERY):
+def analyze(device, client, highly_suspected_uei, low_suspected_uei, time_guard, minimum_battery):
 
     #get the device
     uei = device["distinct"]
@@ -16,9 +16,8 @@ def analyze(device, client, highly_suspected_uei, low_suspected_uei, TIME_GUARD,
     date_format = "%Y-%m-%dT%H:%M:%S.%fZ"
 
     #get the time stamp of X days ago
-    current_timestamp = datetime.now().timestamp()
 
-    date_daysago = datetime.now() - timedelta(days=TIME_GUARD)
+    date_daysago = datetime.now() - timedelta(days=time_guard)
 
     timestamp_daysago = date_daysago.timestamp()
 
@@ -32,10 +31,10 @@ def analyze(device, client, highly_suspected_uei, low_suspected_uei, TIME_GUARD,
 
         #test result
 
-        if (timestamp < timestamp_daysago and point["last"] < MIMIMUM_BATTERY):
+        if (timestamp < timestamp_daysago and point["last"] < minimum_battery):
             # out of battery and out of network
             highly_suspected_uei.append((point["time"], uei, point["last"]))
 
-        elif (timestamp < timestamp_daysago):
+        elif timestamp < timestamp_daysago:
             # out of network since X days but battery is okay
             low_suspected_uei.append((point["time"], uei, point["last"]))

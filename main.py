@@ -1,7 +1,6 @@
-from influxdb import InfluxDBClient
-from analyze import *
-import time
 import getpass
+from influxdb import InfluxDBClient
+from analyze import analyze
 
 
 TIME_GUARD = 14
@@ -11,9 +10,9 @@ MIMIMUM_BATTERY = 2.5
 def progress_bar(total, progress):
     bar_length = 30
     filled_length = int(round(bar_length * progress / total))
-    bar = '=' * filled_length + '-' * (bar_length - filled_length)
+    progressbar = '=' * filled_length + '-' * (bar_length - filled_length)
     percent = round(100.0 * progress / total, 1)
-    print(f'Progress: [{bar}] {percent}%\r', end='', flush=True)
+    print(f'Progress: [{progressbar}] {percent}%\r', end='', flush=True)
 
 
 
@@ -36,26 +35,26 @@ try:
 
 
 except Exception as error:
-    print("Connexion failed:", str(error))
+    print("Connection failed:", str(error))
 
-print("Connexion successful !")
+print("Connection successful !")
 
 
 
 #Number of devices
 
-query = "SELECT COUNT(DISTINCT(deveui)) FROM mqtt_consumer WHERE time < '2022-01-01T00:00:00Z'"
+QUERY = "SELECT COUNT(DISTINCT(deveui)) FROM mqtt_consumer WHERE time < '2022-01-01T00:00:00Z'"
 
-result = client.query(query, database="dev")
+result = client.query(QUERY, database="dev")
 
 for item in result.get_points():
-    total = item["count"]
+    total_item = item["count"]
 
 #List of devices
 
-query = "SELECT DISTINCT deveui FROM mqtt_consumer WHERE time < '2022-01-01T00:00:00Z'"
+QUERY = "SELECT DISTINCT deveui FROM mqtt_consumer WHERE time < '2022-01-01T00:00:00Z'"
 
-result = client.query(query, database="dev")
+result = client.query(QUERY, database="dev")
 
 
 
@@ -66,18 +65,18 @@ highly_suspected_uei = []
 low_suspected_uei = []
 
 # analyze each device
-device_number = 0
+ITERATION = 0
 
 
 #Check each device
 for device in result.get_points():
 
-    progress_bar(total, device_number)
+    progress_bar(total_item, ITERATION)
 
     #check last data of this device
     analyze(device, client, highly_suspected_uei, low_suspected_uei, TIME_GUARD, MIMIMUM_BATTERY)
 
-    device_number = device_number + 1
+    ITERATION = ITERATION + 1
 
 
 #result file
