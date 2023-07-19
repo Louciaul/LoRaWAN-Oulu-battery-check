@@ -1,6 +1,6 @@
 # LoWaRAN-Oulu-battery-check
 
-This repository allows the user to detect which device is failing in Oulu's LoWaRAN network
+This repository allows the user to detect which device is failing in Oulu's university LoWaRAN network
 
 ## Prerequisite
 
