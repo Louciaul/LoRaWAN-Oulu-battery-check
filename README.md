@@ -8,7 +8,7 @@ This repository allows the user to detect which device is failing in Oulu's LoWa
 pip install influxdb
 ```
 
-## How to run
+## Run the code
 
 This code connects to Oulu's LoWaRAN network influxDB endpoint
 
