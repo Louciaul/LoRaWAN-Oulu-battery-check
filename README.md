@@ -26,7 +26,7 @@ As the database start to be huge, it may take 20 minutes to run entirely
 
 This programm can be improved by making change in the precision of the battery level. At this point I had no idea at which point the battery will make the device failed, from arbitrary decision when seeing all the data, most devices that don't fail are above 3.6 V. A lot of devices fail when under 2.5 V. 
 
-I added global variable, you can then change:
+I added global variable, you can then change in [main.py](main.py):
 - the time guard for last data published
 - the minimum battery level to trigger a suspicious device
 
