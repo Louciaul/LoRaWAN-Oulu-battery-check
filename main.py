@@ -2,8 +2,10 @@ import getpass
 from influxdb import InfluxDBClient
 from analyze import analyze
 
-
+#in days
 TIME_GUARD = 14
+
+#in volt
 MIMIMUM_BATTERY = 2.5
 
 
