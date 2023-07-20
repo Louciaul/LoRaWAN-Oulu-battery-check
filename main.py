@@ -1,7 +1,7 @@
 import getpass
+import csv
 from influxdb import InfluxDBClient
 from analyze import analyze
-from api import ask_for_id
 
 #in days
 TIME_GUARD = 14
@@ -81,14 +81,12 @@ for device in result.get_points():
 
 #result file
 
-with open("result_highly_suspicious.csv",'w') as file:
+with open("result_highly_suspicious.csv",'w',newline='') as file:
+    writer = csv.writer(file)
+    writer.writerow(["time","eui","device_id", "Battery","URL"])
+    writer.writerows(highly_suspected_uei)
 
-    for uei in highly_suspected_uei:
-        file.write(str(uei))
-        file.write("\n")
-
-with open("result_low_suspicious.csv",'w') as file:
-    
-    for uei in low_suspected_uei:
-        file.write(str(uei))
-        file.write("\n")
+with open("result_low_suspicious.csv",'w',newline='') as file:
+    writer = csv.writer(file)
+    writer.writerow(["time","eui","device_id", "Battery","URL"])
+    writer.writerows(low_suspected_uei)

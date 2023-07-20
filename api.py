@@ -40,7 +40,10 @@ def ask_for_id(uei):
         #check the answer
         if answer.status_code == 200:
             data = answer.json()
-            return data["device"]["_id"]
+            if(data["device"] is not None):
+                return data["device"]["_id"]
+            else:
+                return "no_id_for_this_device"
         else:
             print(f"Request failed {answer.status_code}")
             return None

@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta
+from api import ask_for_id
 
 
 def analyze(device, client, highly_suspected_uei, low_suspected_uei, time_guard, minimum_battery):
@@ -33,8 +34,16 @@ def analyze(device, client, highly_suspected_uei, low_suspected_uei, time_guard,
 
         if (timestamp < timestamp_daysago and point["last"] < minimum_battery):
             # out of battery and out of network
-            highly_suspected_uei.append((point["time"], uei, point["last"]))
+
+            #get the map url of the device
+            id = ask_for_id(uei)
+            web_url = "https://smartcampus.oulu.fi/manage/map?activateById=" + id
+            highly_suspected_uei.append([point["time"], uei, id, point["last"], web_url])
 
         elif timestamp < timestamp_daysago:
             # out of network since X days but battery is okay
-            low_suspected_uei.append((point["time"], uei, point["last"]))
+
+            #get the map url of the device
+            id = ask_for_id(uei)
+            web_url = "https://smartcampus.oulu.fi/manage/map?activateById=" + id
+            low_suspected_uei.append([point["time"], uei, id, point["last"], web_url])

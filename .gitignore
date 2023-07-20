@@ -1,5 +1,7 @@
 Login.txt
 
-suspect.txt
+result_highly_suspicious.csv
+
+result_low_suspicious.csv
 
 /__pycache__

@@ -35,13 +35,15 @@ I added global variable, you can then change in [main.py](main.py):
 
 ## Results
 
-You can see the result in the [result.txt](result.txt) file
+You can see the result in the [result_highly_suspicious.csv](result_highly_suspicious.csv) and [result_low_suspicious.csv](result_low_suspicious.csv) files
 
 You will find:
 
 - A highly suspected list of devices: these devices failed to publish data since 14 days (default) and have a low level of battery (< 2.5 V by default)
 
 - A low suspected list of devices: these devices failed to publish data since 14 days (default) but have a normal level of battery
+
+You will also find attached to each device the URL showing the location of the device on the map (if it still exists)
 
 ## How to locate the device
 
@@ -52,14 +54,11 @@ then enter the id of the device without the "-"
 example:
 - ab-cd-ef-gh-ij-kl-mn-op -> abcdefghijklmnop
 
+
+You can also find the URL in the csv result files.
+
 ## License
 
 This project is under the GNU GENERAL PUBLIC LICENSE-3.0 new or revised license. Please read the [LICENSE](LICENSE) file.
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-## TODO 
-
-- add link to the location of the device on the map
-
-- allow the user to get the result in a .json or .csv
