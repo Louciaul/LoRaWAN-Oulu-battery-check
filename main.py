@@ -1,6 +1,7 @@
 import getpass
 from influxdb import InfluxDBClient
 from analyze import analyze
+from api import ask_for_id
 
 #in days
 TIME_GUARD = 14
@@ -59,9 +60,6 @@ QUERY = "SELECT DISTINCT deveui FROM mqtt_consumer WHERE time < '2022-01-01T00:0
 result = client.query(QUERY, database="dev")
 
 
-
-
-
 # list of suspected uei that have ran out of battery
 highly_suspected_uei = []
 low_suspected_uei = []
@@ -83,18 +81,14 @@ for device in result.get_points():
 
 #result file
 
-with open("suspect.txt",'w') as file:
-
-    file.write("Format: TIME , DEVICE , BATTERY LEVEL (V)\n\n")
-
-    file.write("Devices highly suspicious with battery problems and passed time guard\n\n")
+with open("result_highly_suspicious.csv",'w') as file:
 
     for uei in highly_suspected_uei:
         file.write(str(uei))
         file.write("\n")
 
-    file.write("\nDevices that were not connected to the network since the time guard\n\n")
-
+with open("result_low_suspicious.csv",'w') as file:
+    
     for uei in low_suspected_uei:
         file.write(str(uei))
         file.write("\n")

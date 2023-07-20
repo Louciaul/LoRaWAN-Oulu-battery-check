@@ -7,6 +7,9 @@ This repository allows the user to detect which device is failing in Oulu's univ
 ```bash
 pip install influxdb
 ```
+```bash
+pip install requests
+```
 
 ## Run the code
 
@@ -32,7 +35,7 @@ I added global variable, you can then change in [main.py](main.py):
 
 ## Results
 
-You can see the result in the [SUSPECT.txt](suspect.txt) file
+You can see the result in the [result.txt](result.txt) file
 
 You will find:
 
