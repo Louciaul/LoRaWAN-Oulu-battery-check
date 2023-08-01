@@ -17,13 +17,16 @@ def generate_html_page(csv_file):
         <h1>List of devices failing</h1>
         <ul>
     """
-    
+
+    number = 1
+
     for row in data:
         if row["device_id"] == "no_id_for_this_device":
             continue
         url = row["URL"]
         device_id = row["device_id"]
-        html_code += f"<li><a href={url}> {device_id}</a></li>"
+        html_code += f"<li> {number}) device id: <a href={url}>{device_id}</a></li>"
+        number += 1
     
     html_code += """
         </ul>

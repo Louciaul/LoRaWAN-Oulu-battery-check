@@ -35,6 +35,8 @@ I added global variable, you can then change in [main.py](main.py):
 
 ## Results
 
+A [html file](result.html) will be created listing all the devices failing with their URL on the map.
+
 You can see the result in the [result_highly_suspicious.csv](result_highly_suspicious.csv) and [result_low_suspicious.csv](result_low_suspicious.csv) files
 
 You will find:
