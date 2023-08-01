@@ -2,6 +2,7 @@ import getpass
 import csv
 from influxdb import InfluxDBClient
 from analyze import analyze
+from html import generate_html_page
 
 #in days
 TIME_GUARD = 14
@@ -78,6 +79,8 @@ for device in result.get_points():
 
     ITERATION = ITERATION + 1
 
+    if ITERATION == 30:
+        break
 
 #result file
 
@@ -90,3 +93,5 @@ with open("result_low_suspicious.csv",'w',newline='') as file:
     writer = csv.writer(file)
     writer.writerow(["time","eui","device_id", "Battery","URL"])
     writer.writerows(low_suspected_uei)
+
+generate_html_page("result_highly_suspicious.csv")

@@ -6,4 +6,6 @@ result_low_suspicious.csv
 
 /__pycache__
 
+result.html
+
 .gitignore
