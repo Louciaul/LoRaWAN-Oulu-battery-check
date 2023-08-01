@@ -79,9 +79,6 @@ for device in result.get_points():
 
     ITERATION = ITERATION + 1
 
-    if ITERATION == 30:
-        break
-
 #result file
 
 with open("result_highly_suspicious.csv",'w',newline='') as file:
