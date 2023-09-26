@@ -1,6 +1,6 @@
-# LoWaRAN-Oulu-battery-check
+# LoRaWAN-Oulu-battery-check
 
-This repository allows the user to detect which device is failing in Oulu's university LoWaRAN network
+This repository allows the user to detect which device is failing in Oulu's university LoRaWAN network
 
 ## Prerequisite
 
@@ -13,7 +13,7 @@ pip install requests
 
 ## Run the code
 
-This code connects to Oulu's LoWaRAN network influxDB endpoint
+This code connects to Oulu's LoRaWAN network influxDB endpoint
 
 To run the code use:
 
